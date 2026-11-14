@@ -2,12 +2,24 @@ import { Composition, Folder } from "remotion";
 import { HelloWorld } from "./HelloWorld";
 import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
+import { CodeStripperDemo } from "./CodeStripperDemo";
+import { TIMINGS } from "./CodeStripperDemo/constants";
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      {/* Featured Master Composition for LinkedIn & Demo */}
+      <Composition
+        id="CodeStripperDemo"
+        component={CodeStripperDemo}
+        durationInFrames={TIMINGS.totalFrames}
+        fps={TIMINGS.fps}
+        width={1920}
+        height={1080}
+      />
+
       <Folder name="Elements">
         <Composition
           id="Logo"
@@ -35,22 +47,17 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
       <Composition
-        // You can take the "id" to render a video:
-        // bunx remotion render HelloWorld
         id="HelloWorld"
         component={HelloWorld}
         durationInFrames={150}
         fps={30}
         width={1920}
         height={1080}
-        // You can override these props for each render:
-        // https://www.remotion.dev/docs/parametrized-rendering
         defaultProps={{
           titleText: "Welcome to Remotion",
           titleColor: "#000000",
         }}
       />
-
     </>
   );
 };
